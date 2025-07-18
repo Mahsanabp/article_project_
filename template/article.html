@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>article page</title>
+    <link rel="stylesheet" href="{% static 'css/main_2.css' %} ">
+</head>
+<body>
+
+    <form class="search-box" method="post">
+        {% csrf_token %}
+        <input type="text" name="q" placeholder="search">
+        <button type="submit">OK</button>
+    </form>
+
+    <div class="article-list">
+        {% for article in articles %}
+            <div class="article-item">~
+                <img src="{{ article.image.url }}" alt="">
+                <h3>{{ article.name }}</h3>
+                <p>rate : {{ article.rate }}</p>
+                <p>date : {{ article.date }}</p>
+                <p>link : {{ article.link }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
